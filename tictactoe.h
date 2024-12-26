@@ -49,6 +49,9 @@ class TicTacToe{
          *  the interface that uses this must make sure they pass this correctly
          *  Returns true if we were able to record the move
          *  Returns false if we were unable to (not valid move)
+         * 
+         * THIS USED TO SWAP THE PLAYER TURN AUTOMATICALLY HOWEVER ISSUES MAY ARRISE FROM THE isWinner() 
+         * SO WE MOVED IT TO A METHOD
          */
         bool makeMove(int row, int col){
             //first check that the move is valid
@@ -57,8 +60,11 @@ class TicTacToe{
             }
             //if it is valid then record the move and change player turn
             board[row][col]= (isXTurn? X:O);//ternary op!
-            isXTurn = !isXTurn;//flip turn bool
+            //MOVED TO ITS OWN METHOD isXTurn = !isXTurn;//flip turn bool
             return true; //move was valid
+        }
+        void swapPlayer(){
+            isXTurn = !isXTurn;//flip turn bool
         }
         /**
          * Validation checker
@@ -76,9 +82,32 @@ class TicTacToe{
             //checks passed return true
             return true;
         }
+        /**
+         * is winner, return true if the current player just won the game else return false
+         */
+        bool isWinner(char currentPlayer){
+            //this loop checks the horizontals and vertical win conditions
+            for(int i=0;i<3;i++){
+                if((board[i][0]==currentPlayer && board[i][1]==currentPlayer && board[i][2]==currentPlayer)
+                || (board[0][i]==currentPlayer &&board[1][i]==currentPlayer &&board[2][i]==currentPlayer)){
+                    winner = currentPlayer; //winner found set the winner field.
+                    isGameOver = true;
+                    return true;
+                }
+            }
+            //this if statment checks the diagonals
+            if((board[0][0]==currentPlayer && board[1][1]==currentPlayer && board[2][2]==currentPlayer)
+            || (board[0][2]==currentPlayer &&board[1][1]==currentPlayer &&board[2][0]==currentPlayer)){
+                winner = currentPlayer; //winner found set the winner field.
+                isGameOver = true;
+                return true;
+            }
+            //if here no winner
+            return false;
+
+        }
 
         /*todo list
-        isWinner()
         isTie()
         */
 };

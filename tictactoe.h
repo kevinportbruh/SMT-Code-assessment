@@ -27,23 +27,57 @@ class TicTacToe{
         bool isGameOver = false; // flag for front end to use
         char winner = NOWINNER; 
     public:
-        //this constructor will simply call the reset function as both initalize the board to new game state.
         TicTacToe(){
+            //initialize the board to empty
+            //call the reset function to save on code duplication
             reset();
         }
         void reset(){
+            //clear board
             for(int i=0;i<3;i++){
                 for(int j=0;j<3;j++){
                     board[i][j]==EMPTY;
                 }
             }
+            //x always goes first
             isXTurn = true;
             isGameOver=false;
             winner = NOWINNER;
         }
+         /**
+         *  Rows and Cols are 0 based
+         *  the interface that uses this must make sure they pass this correctly
+         *  Returns true if we were able to record the move
+         *  Returns false if we were unable to (not valid move)
+         */
+        bool makeMove(int row, int col){
+            //first check that the move is valid
+            if(!isValid(row,col)){
+                return false;
+            }
+            //if it is valid then record the move and change player turn
+            board[row][col]= (isXTurn? X:O);//ternary op!
+            isXTurn = !isXTurn;//flip turn bool
+            return true; //move was valid
+        }
+        /**
+         * Validation checker
+         * mainly check if row and col are not out of bounds or if the spot we are trying to place is not taken
+         * Return true if valid false if not.
+         */
+        bool isValid(int row, int col){
+            //First check if the row and col are between [0-2] else its out of range
+            if((row<0||row>2) ||(col<0||col>2)){
+                return false;
+            }else if (board[row][col]!=EMPTY){  //then check if board[row][col] == empty space
+                return false;
+            }
+            //the above could be consolidated into one line but i like the readablity
+            //checks passed return true
+            return true;
+        }
+
         /*todo list
-        makemove(r,c)
-        isvalid()
         isWinner()
         isTie()
         */

@@ -24,7 +24,7 @@ class TicTacToe{
     private:
         char board[3][3]; // the board itself
         bool isXTurn=true; //true if it is X's turn, false if it is O's turn
-        bool isGameOver = false; // flag for front end to use
+        bool isGameOver = false; // flag for front end to use in a game loop
         char winner = NOWINNER; 
     public:
         TicTacToe(){
@@ -105,6 +105,24 @@ class TicTacToe{
             //if here no winner
             return false;
 
+        }
+        /**
+         * isTie - returns true if there is a tie if not return false
+         * a tie would be if there are no empty spaces on the board and there is not a winner.
+         */
+        bool isTie(){
+            //loop thru board
+            for(int i=0;i<3;i++){
+                for(int j=0;j<3;j++){
+                    //if we found an empty spot and there is not a winner
+                    if(board[i][j] == EMPTY && winner == NOWINNER){
+                        return false;
+                    }
+                }
+            }
+            //the board is full and there was not a winner 
+            isGameOver = true;//game is over
+            return true;
         }
 
         /*todo list

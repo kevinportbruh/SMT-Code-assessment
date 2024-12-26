@@ -26,6 +26,7 @@ class TicTacToe{
         bool isXTurn=true; //true if it is X's turn, false if it is O's turn
         bool isGameOver = false; // flag for front end to use in a game loop
         char winner = NOWINNER; 
+        
     public:
         TicTacToe(){
             //initialize the board to empty
@@ -124,8 +125,26 @@ class TicTacToe{
             isGameOver = true;//game is over
             return true;
         }
+        //getters and setters for the fields
+        char getWinner(){
+            return winner;
+        }
+        //is the game over?
+        bool getIsGameOver(){
+            return isGameOver;
+        }
+        void setIsGameOver(bool b){
+            isGameOver =b;
+        }
+        //get whoevers players turn it is.
+        char getPlayerTurn(){
+            return isXTurn ? X : O;
+        }
+        //no setter for player turn as to prevent misue (setting it to another char), use the swapTurn() method instead
+        //getter for the board state
+        //had to look up how to return a 2d array as a reference this is what I found.
+        const char (&getBoard() const)[3][3] {
+            return board;
+        }
 
-        /*todo list
-        isTie()
-        */
 };

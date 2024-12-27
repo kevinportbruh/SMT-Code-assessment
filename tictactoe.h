@@ -11,6 +11,7 @@ using namespace std;
  * - This class will NOT implement a game loop as that will be left up to the interface that uses this.
  * - The front end interface will adheare to the rules laid out in the method comments.
  * - the tictactoe interface will always be a 3x3 grid, if it is not then some small scale refactoring will need to be done.
+ *      - the refactoring would be adding a field to hold the size of the board, replace any hard coded 3 to that boardSize and any hard coded 2 to boardSize-1 along with a few other changes.
  * - This class will NOT handle I/O, the front end will deal with that and pass it to us.
  * 
  * So this class will simply have logic to do the following:
@@ -204,8 +205,9 @@ class TicTacToe{
         void setDebugMode(bool b){
             if(b){
                 cout << "Debug mode is on" << endl;
-            }else{
-                cout << "Debug mode is off" << endl;
+            }else if (debugMode){
+                //if it was on then tell them its off
+                cout << "Debug mode is now off" << endl;
             }
             debugMode = b;
         }

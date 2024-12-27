@@ -93,7 +93,7 @@ class TicTacToe{
             //if it is valid then record the move and change player turn
             board[row][col]= (isXTurn? X:O);//ternary op!
             if(debugMode){ // added print statements
-                cout << "player " << getPlayerTurn() << "made a move at R " << row << " C "<< col << endl;
+                cout << "player " << getPlayerTurn() << " made a move at R " << row << " C "<< col << endl;
             }
             //MOVED TO ITS OWN METHOD isXTurn = !isXTurn;//flip turn bool
             return true; //move was valid
@@ -172,6 +172,12 @@ class TicTacToe{
                     }
                 }
             }
+            //if the game is already over and a tie is checked then return false.
+            if(isGameOver){
+                return winner == NOWINNER;
+            } 
+            
+            //if here then there is a winner and the game is over
             //the board is full and there was not a winner 
             isGameOver = true;//game is over
             if(debugMode){
@@ -185,7 +191,7 @@ class TicTacToe{
             return winner;
         }
         //is the game over?
-        bool isGameOver(){
+        bool checkIsGameOver(){
             return isGameOver;
         }
         void setIsGameOver(bool b){
@@ -196,7 +202,15 @@ class TicTacToe{
             return isXTurn ? X : O;
         }
         void setDebugMode(bool b){
+            if(b){
+                cout << "Debug mode is on" << endl;
+            }else{
+                cout << "Debug mode is off" << endl;
+            }
             debugMode = b;
+        }
+        bool getDebugMode(){
+            return debugMode;
         }
 
         //no setter for player turn as to prevent misue (setting it to another char), use the swapTurn() method instead

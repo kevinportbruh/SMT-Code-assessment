@@ -1,14 +1,14 @@
-#Coding Assessment Submission
+# Coding Assessment Submission
 
 Hello! 
 My name is Kevin Portillo, and I created the files included in this repository as part of the SMT coding assessment. 
 I want to express my gratitude for this opportunity to showcase my coding abilities and style.
 
-#Overview
+# Overview
 
 I have put significant effort into making this submission a strong representation of my programming skills. Here's what you can expect from my code:
 
-##Coding Problems
+## Coding Problems
 
 Each coding problem is solved with careful thought and clear implementation.
 
@@ -20,7 +20,7 @@ You can run the menu to interactively test the methods multiple times without re
 
 Alternatively, you can comment out the menu logic and directly call the methods in the main function for prewritten test cases.
 
-##Tic-Tac-Toe
+## Tic-Tac-Toe
 
 The Tictactoe implementation follows the guidelines provided, focusing on backend logic without a UI.
 
@@ -28,7 +28,7 @@ I spent the allotted time implementing a comprehensive unit testing system, whic
 
 Each method is documented extensively to ensure clarity and understanding of its functionality.
 
-#How to Run
+# How to Run
 
 I have included a Makefile to simplify the build and execution process. You can use the following commands:
 
@@ -42,7 +42,7 @@ make runtester - Runs the tictactoe-tester program.
 
 make clean - Cleans up object files and executables.
 
-#Final Thoughts
+# Final Thoughts
 
 Thank you again for this opportunity. I am proud of the work I've done and excited to share it with you. Please feel free to reach out if you have any questions or need further clarification.
 

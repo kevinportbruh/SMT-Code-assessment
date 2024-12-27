@@ -3,8 +3,8 @@ CC = g++
 CFLAGS = -g -c -O2
 
 # Executable names
-CODING_EXEC = coding-problems
-TESTER_EXEC = tictactoe-tester
+CODING_EXEC = coding-problems.exe
+TESTER_EXEC = tictactoe-tester.exe
 
 # Object files
 CODING_OBJ = coding-problems.o

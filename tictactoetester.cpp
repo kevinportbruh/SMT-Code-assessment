@@ -4,7 +4,7 @@
 /**
  * This file uses the basic cassert to unit test the tictactoe class I wrote that could be used to track a game played by two people.
  * This class will test the functionality of the various methods of the class I wrote along with a couple of edge cases
- * 
+ * the magic is below 🧙
  */
 
 
@@ -274,6 +274,7 @@ int main(){
      * functions with bool parameteers are there because they have various turning on debug mode and resetting the game
      * so to quickly test them I added a bool parameter to the function 
      */
+    cout<< "Running tests"<<endl;
     testSwapPlayer();//tests swap player
     testValidity(false);//tests validity
     testReset(false);//tests reset

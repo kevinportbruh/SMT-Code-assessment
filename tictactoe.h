@@ -7,7 +7,10 @@
 #define NOWINNER '\0'
 #include <iostream>
 using namespace std;
+
 /**
+ * @Author: Kevin Portillo Self-Proclaimed Coding Wizard 🧙
+ * 
  * ASSUMPTIONS MADE FOR THIS IMPLEMENTATION:
  *  according to the document, this should not have a UI and should be written so that any tictactoe interface can use it
  *  So from my understanding, this class is a backend class that will be used by a theorectical tictactoe front end to play the game.

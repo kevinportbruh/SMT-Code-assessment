@@ -87,7 +87,7 @@ class TicTacToe{
          */
         bool makeMove(int row, int col){
             //first check that the move is valid
-            if(!isValid(row,col)){
+            if(!isValid(row,col) || isGameOver){
                 return false;
             }
             //if it is valid then record the move and change player turn

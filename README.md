@@ -27,6 +27,9 @@ The Tictactoe implementation follows the guidelines provided, focusing on backen
 I spent the allotted time implementing a comprehensive unit testing system, which demonstrates the robustness of the code.
 
 Each method is documented extensively to ensure clarity and understanding of its functionality.
+### Tic-Tac-Toe Unit Tests
+As per the document I have written a program to unit test my tictactoe implementation. This is the main way to interact with the app at the moment as the requirment as to not make a UI for the program.
+This is what runs when you use the makefile. Some of the unit tests accecpt a boolean parameter (all of them are set to false at the moment). This parameter turns on the debugging option of the program which prints various debugging messages to the console to get a better understanding of how the program is working. Simply pass a value of true to the method calls in main and recompile it with the makefile commands to see the debuging output in the console!
 
 # How to Run
 

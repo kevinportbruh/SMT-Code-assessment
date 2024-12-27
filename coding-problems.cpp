@@ -2,7 +2,27 @@
 #include <iostream>
 #include <limits>
 #include <cmath>
-//@Author: Kevin Portillo Self-Proclaimed Coding Wizard
+
+/**
+ * @Author: Kevin Portillo Self-Proclaimed Coding Wizard 🧙
+ * The magic below 🧙
+ * The first two problems can be verified using this online calculator:
+ *  https://www.omnicalculator.com/math/right-triangle-side-angle
+ * simply select the "angle and one side" option and input the values you want to test
+ *  for the find canera height problem, remeber to half the field length and the camera FOV (side b, and angle β respectively)
+ *   side a (aka cam height) is a = b × tan(90-(β/2)) which a = b × tan(α) 
+ *  using our program 600 for field length and 60 for fov we get 519.615
+ *  using the calculator we have to input 300 for side b and 60 for angle α to get the same result of 519.615 (side length a)
+ * 
+ * 
+ *  for the find intersection distance problem, input the camera height and the camera tilt (side a, and angle β respectively)
+ *      side b (aka distance) is b = a × tan(90-β)
+ * using our program if we put 400 and the tilt as 40 we get the result of 476.7
+ * using the online calculator we have to input 400 for side a and 50 for angel β we get the same result of 476.7 (side length b)
+ * 
+ *  I could not find a calculator for the third problem, but I used the formulas for projectile motion to solve it.
+ *  
+ */
 //first problem
 bool FindCameraHeight(const double field_length, const double camera_field_of_view, double &camera_height){
     /** Feel free to minimize this comment, I explain my thought process here
@@ -12,8 +32,11 @@ bool FindCameraHeight(const double field_length, const double camera_field_of_vi
      * We also know the missing angle due to the angle sum property of a triangle. (sum of all internal angles == 180)
      * We should split the length of the field in half, as well as the FOV, and turn the triangle into a right triangle.
      * ------------------------------
-     * If we use the formula  tangent(0) =Opp/Adj (0 being the degree we found mathematically, Opp being H, and Adj being L/2) 
-     * we can rearrange to Adj = tan(0) * Opp -> H = tan(0) *(L/2)
+     * If we use the formula tangent(90-0) =Opp/Adj (0 being half our fov, Opp being H, and Adj being L/2) 
+     * we do 90-0 as the 90 is the right angle of the triangle and 0 is the angle we are given so 90-0 gives us angle α.
+     * 
+     * we can rearrange to Adj = tan(90-0) * Opp -> Opp = tan(0) -> H = tan(90-0) *(L/2)
+     * more elegantly: a = b × tan(90-(β/2)) (again a is H, b is L/2, and β is the FOV) (90 - (β/2) gives us α)
      * 
      * set H to the cam_height param. and return true if all successful OR RETURN FALSE if we have any illegal fields.
      */
@@ -35,7 +58,7 @@ bool FindCameraHeight(const double field_length, const double camera_field_of_vi
     std::cout << "L/2: " << L << std::endl;
     double halfFOV = camera_field_of_view/2;
     std::cout << "half FOV: " << halfFOV << std::endl;
-    double theta = 90 - halfFOV; //Camera height is opposite of this angle, while L/2 is adjacent
+    double theta = 90 - halfFOV; //Camera height is opposite of this angle (angle α), while L/2 is adjacent to it.
     std::cout << "interior angle: " << theta << std::endl;
     //turn theta into radians
     theta = theta * (M_PI/180);
@@ -53,11 +76,12 @@ bool FindIntersectionDistance(const double camera_height, const double camera_ti
      * We need to determin the interior angle of the triangle to find the distance from the origin to the intersection point.
      * 
      * The camera can only be tiled down between (0,90) exclusively.
-     * we flip the tilt of the camera to get the interior angle of the triangle. (subtract 90 from the tilt)
+     * we flip the tilt of the camera to get the interior angle of the triangle. (subtract 90 from the tilt because the tilt is down and if the tilt is 0 then the interior angle is 90(impossible))
      * we can use the formula tan(0) = Opp/Adj to find the distance from the origin to the intersection point.
      * where opp is the camera height and adj is the distance we are looking for.
      * -----
      * Tan(0) = Opp/Adj -> Adj = Opp*tan(0) -> distance = camera_height*tan(90-camera_tilt)
+     * more elegantly: b = a × tan(90-β) (a is camera height, b is distance, and β is camera tilt)
      */
 
     //input validation
@@ -72,7 +96,7 @@ bool FindIntersectionDistance(const double camera_height, const double camera_ti
     }
     //all clear
     double theta = 90 - camera_tilt; //flip the tilt to get the interior angle of the triangle (i.e if the tilt down is 30 degrees, the interior angle is 60)
-    std::cout << "interior angle: " << theta << std::endl;
+    std::cout << "interior angle of the camera tilt: " << theta << std::endl;
     theta = theta * (M_PI/180); //convert to radians
     distance = camera_height*tan(theta); //find the distance from the origin to the intersection point
     
